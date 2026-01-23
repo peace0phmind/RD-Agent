@@ -102,3 +102,44 @@
 - IC: > 0.11
 - Factor count: ≤ 10
 
+
+## Phase 2 Execution Started
+**Start Time**: 2026-01-23 22:03:49
+**Configuration**: 5-loop model optimization with fixed best factors from Phase 1
+**Expected Duration**: ~40 minutes
+
+**Fixed Factors** (from Phase 1 Loop 3, IC=0.104):
+- Risk_Adj_Momentum_20D (Z-Score normalized momentum)
+- Momentum_20D
+- Volatility_20D
+- VPT_20D
+
+**Plan**:
+- Loop 6: LightGBM with return-optimized loss
+- Loop 7: LightGBM with strong regularization
+- Loop 8: MLP (neural network)
+- Loop 9: HIST (histogram-based boosting)
+- Loop 10: Best model fine-tuning
+
+**Target**:
+- Annual Return: > 5%
+- IC: Maintain > 0.10
+- Max Drawdown: < 10%
+
+
+## Phase 2 Execution Started
+**Start Time**: 2026-01-23 22:05:33
+**Configuration**: 5-loop model optimization with fixed best factors from Phase 1
+**Expected Duration**: ~40 minutes
+
+**Fixed Factors** (from Phase 1 Loop 3, IC=0.104):
+- Risk_Adj_Momentum_20D (Z-Score normalized momentum)
+- Momentum_20D
+- Volatility_20D
+- VPT_20D
+
+**Plan**:
+- Loop 0-4: Model evolution (LightGBM variants, MLP, HIST)
+- Target: Annual Return > 5%
+- Constraint: Maintain IC > 0.10
+
