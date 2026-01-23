@@ -1,0 +1,2 @@
+Loop,Phase,Time,Factor_Count,Primary_Factor,Model,IC,IC_IR,Ann_Return,Max_Drawdown,Sharpe,Notes
+0,Baseline,08:00,3,Price_Distance_Z,LightGBM,0.102,0.45,-2.42%,0.00%,-0.25,Baseline from previous experiment
