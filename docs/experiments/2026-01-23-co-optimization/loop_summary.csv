@@ -1,2 +1,7 @@
 Loop,Phase,Time,Factor_Count,Primary_Factor,Model,IC,IC_IR,Ann_Return,Max_Drawdown,Sharpe,Notes
 0,Baseline,08:00,3,Price_Distance_Z,LightGBM,0.102,0.45,-2.42%,0.00%,-0.25,Baseline from previous experiment
+0,Phase1,21:34,3,Momentum_5D+60D+VPT_20D,LightGBM,0.091802,,,-2.41,0.00,Multi-timeframe test failed
+1,Phase1,21:43,,,LightGBM,0.093453,,,-2.42,0.00,Risk-adjusted factors (+1.8%)
+2,Phase1,21:37,,,LightGBM,0.091942,,,-2.41,0.00,Further optimization (+0.2%)
+3,Phase1,21:48,,,LightGBM,0.104153,,,-2.42,0.00,BEST! (+13.5% IC improvement)
+4,Phase1,21:55,,,LightGBM,0.098051,,,-2.41,0.00,Follow-up validation (+6.8%)
