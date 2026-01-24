@@ -23,6 +23,7 @@ from rdagent.app.data_science.loop import main as data_science
 from rdagent.app.general_model.general_model import (
     extract_models_and_implement as general_model,
 )
+from rdagent.app.qlib_rd_loop.exhaustive_search import main as exhaustive_search
 from rdagent.app.qlib_rd_loop.factor import main as fin_factor
 from rdagent.app.qlib_rd_loop.factor_from_report import main as fin_factor_report
 from rdagent.app.qlib_rd_loop.model import main as fin_model
@@ -73,6 +74,7 @@ app.command(name="fin_factor")(fin_factor)
 app.command(name="fin_model")(fin_model)
 app.command(name="fin_quant")(fin_quant)
 app.command(name="fin_factor_report")(fin_factor_report)
+app.command(name="exhaustive_search")(exhaustive_search)
 app.command(name="general_model")(general_model)
 app.command(name="data_science")(data_science)
 app.command(name="grade_summary")(grade_summary)
