@@ -34,8 +34,28 @@ class ReportGenerator:
         # Get all experiments
         experiments = self.tracker.get_all_experiments()
 
+        # Generate report path first
+        report_path = self.output_dir / "layer1_report.md"
+
         if not experiments:
-            return "No experiments to report"
+            # Write placeholder report
+            report = f"""# Layer 1 Single Factor Scan Report
+
+**Generated:** {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+
+## Summary
+
+No experiments found. Run exhaustive search to generate results.
+
+To start:
+```bash
+rdagent exhaustive_search --layers 1
+```
+"""
+            with open(report_path, "w") as f:
+                f.write(report)
+
+            return str(report_path)
 
         # Calculate statistics
         total = len(experiments)
@@ -92,8 +112,7 @@ class ReportGenerator:
         else:
             report += "- ⚠️ **SOTA not exceeded**: Current best IC is below target\n\n"
 
-        # Save report
-        report_path = self.output_dir / "layer1_report.md"
+        # Save report (report_path already defined at top)
         with open(report_path, "w") as f:
             f.write(report)
 
@@ -121,18 +140,22 @@ class ReportGenerator:
                 "Annual_Return", "Max_Drawdown", "Sharpe_Ratio"
             ])
 
-            for i, exp in enumerate(experiments, 1):
-                factor_name = eval(exp["factors"])[0] if exp["factors"] else "Unknown"
-                writer.writerow([
-                    i,
-                    factor_name,
-                    f"{exp['ic']:.6f}",
-                    f"{exp['ir']:.6f}",
-                    f"{exp['rank_ic']:.6f}",
-                    f"{exp['annual_return']:.6f}",
-                    f"{exp['max_drawdown']:.6f}",
-                    f"{exp['sharpe_ratio']:.6f}",
-                ])
+            if not experiments:
+                # Write empty row to indicate no data
+                writer.writerow(["No experiments", "", "", "", "", "", "", ""])
+            else:
+                for i, exp in enumerate(experiments, 1):
+                    factor_name = eval(exp["factors"])[0] if exp["factors"] else "Unknown"
+                    writer.writerow([
+                        i,
+                        factor_name,
+                        f"{exp['ic']:.6f}",
+                        f"{exp['ir']:.6f}",
+                        f"{exp['rank_ic']:.6f}",
+                        f"{exp['annual_return']:.6f}",
+                        f"{exp['max_drawdown']:.6f}",
+                        f"{exp['sharpe_ratio']:.6f}",
+                    ])
 
         print(f"CSV saved to: {csv_path}")
         return str(csv_path)
