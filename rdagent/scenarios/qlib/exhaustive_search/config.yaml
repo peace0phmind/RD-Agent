@@ -1,0 +1,56 @@
+# Exhaustive Search Configuration
+
+experiment:
+  name: "exhaustive_search_phase1"
+  description: "Phase 1: Single factor systematic scanning"
+
+  # Parallel execution
+  max_parallel: 4
+  timeout_per_experiment: 3600  # seconds
+
+  # Data periods (same as RD-Agent defaults)
+  train_start: "2008-01-01"
+  train_end: "2014-12-31"
+  valid_start: "2015-01-01"
+  valid_end: "2016-12-31"
+  test_start: "2017-01-01"
+  test_end: "2020-12-31"
+
+  # SOTA baseline
+  sota:
+    ic: 0.098464
+    factors: ["VPT_5D", "OBV_5D"]
+
+# Layer 1: Single factor scanning
+layer1:
+  enabled: true
+
+  # Factor sources to include
+  factor_sources:
+    - alpha158_baseline
+    - custom_research_factors
+
+  # Quality filters
+  filters:
+    min_ic: 0.05      # Minimum IC to consider
+    min_ir: 0.3       # Minimum IR to consider
+    top_n: 30         # Number of top factors to pass to Layer 2
+
+  # Output
+  output:
+    top_factors_csv: true
+    summary_report: true
+    detailed_report: true
+
+# Reporting
+reporting:
+  auto_generate: true
+  formats:
+    - markdown
+    - csv
+    - json
+
+  output_dir: "results"
+  plots:
+    - ic_distribution
+    - top_factors_bar_chart
